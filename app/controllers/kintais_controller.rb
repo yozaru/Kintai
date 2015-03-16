@@ -5,6 +5,7 @@ class KintaisController < ApplicationController
   def index
 #    @kintais = Kintai.all
     @kintais = Kintai.order(params[:sort])
+    @users = User.order(params[:sort])
     @zero_time = 0
     @late_time = 10
     @hiru_time = 13
