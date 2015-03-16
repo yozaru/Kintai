@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_at: 2015-03-14 20:22:19
+  idm: MyString
+  user_id: 1
+  entry_flag: false
+
+two:
+  check_at: 2015-03-14 20:22:19
+  idm: MyString
+  user_id: 1
+  entry_flag: false

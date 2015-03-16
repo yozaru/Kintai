@@ -1,0 +1,67 @@
+<center>
+<p id="notice"><%= notice %></p>
+
+<h1>Applibot 勤怠管理表</h1>
+現在の時刻は
+<%= Time.zone.now.to_s %>
+<br>
+<br>
+<div class="container">
+<div class="tablecenter">
+<table border="1">
+  <thead>
+    <tr>
+      <th><%= link_to "社員番号", sort: "employee_id" %></th>
+      <th><%= link_to "氏名", sort: "name" %></th>
+      <th><%= link_to "性別", sort: "sex" %></th>
+      <th><%= link_to "プロジェクト", sort: "job" %></th>
+      <th><%= link_to "職種", sort: "project" %></th>
+      <th><%= link_to "出社", sort: "shusha" %></th>
+      <th><%= link_to "退社", sort: "taisha" %></th>
+      <th><%= link_to "勤務時間", sort: "taisha" %></th>
+      <th><%= link_to "勤務時間合計", sort: "taisha" %></th>
+      <th><%= link_to "月間労働時間予測", sort: "taisha" %></th>
+      <th><%= link_to "欠勤", sort: "taisha" %></th>
+      <th><%= link_to "遅刻", sort: "taisha" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody class="scrollBody">
+    <% @kintais.each do |kintai| %>
+      <tr>
+        <td><%= kintai.employee_id %></td>
+        <td><%= kintai.name %></td>
+        <td><%= kintai.sex %></td>
+        <td><%= kintai.project %></td>
+        <td><%= kintai.job %></td>
+	<td><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
+	<td><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+	<td><%= strTime = kintai.taisha.hour - kintai.shusha.hour %></td>
+	<td><%= strTime = kintai.taisha.hour - kintai.shusha.hour %></td>
+	<td><%= strTime = kintai.taisha.hour - kintai.shusha.hour %></td>
+	<td><%= strTime = kintai.taisha.hour - kintai.shusha.hour %></td>
+	<td><%= strTime = kintai.taisha.hour - kintai.shusha.hour %></td>
+        <td><%= link_to 'Show', kintai %></td>
+        <td><%= link_to 'Edit', edit_kintai_path(kintai) %></td>
+        <td><%= link_to 'Destroy', kintai, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<!-- <div style="position:absolute; top:120px; left:200px;">
+<h1>今日の遅刻は<%= p @asa %>人です
+<br>
+<br>
+今日の昼出社は<%= p @hiru %>人です
+<br>
+<br>
+今日の深夜残業は<%= p @zangyo %>人です
+</h1>
+</div>
+-->
+<%= link_to 'New Kintai', new_kintai_path %>
+</center>

@@ -1,0 +1,60 @@
+<%= form_for(@kintai) do |f| %>
+  <% if @kintai.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kintai.errors.count, "error") %> prohibited this kintai from being saved:</h2>
+
+      <ul>
+      <% @kintai.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :employee_id %><br>
+    <%= f.text_field :employee_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+   <div class="field">
+    <%= f.label :idm %><br>
+    <%= f.text_field :idm %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sex %><br>
+    <%= f.text_field :sex %>
+  </div>
+
+    <div class="field">
+    <%= f.label :project %><br>
+    <%= f.text_field :project %>
+  </div>
+
+    <div class="field">
+    <%= f.label :job %><br>
+    <%= f.text_field :job %>
+  </div>
+
+
+
+
+
+
+
+  <div class="field">
+    <%= f.label :shusha %><br>
+    <%= f.time_select :shusha %>
+  </div>
+  <div class="field">
+    <%= f.label :taisha %><br>
+    <%= f.time_select :taisha %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

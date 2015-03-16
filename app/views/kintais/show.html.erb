@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @kintai.employee_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @kintai.name %>
+</p>
+
+<p>
+  <strong>Shusha:</strong>
+  <%= @kintai.shusha %>
+</p>
+
+<p>
+  <strong>Taisha:</strong>
+  <%= @kintai.taisha %>
+</p>
+
+<%= link_to 'Edit', edit_kintai_path(@kintai) %> |
+<%= link_to 'Back', kintais_path %>

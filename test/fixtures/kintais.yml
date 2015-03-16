@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee_id: MyString
+  name: MyString
+  shusha: 2015-03-11 09:08:43
+  taisha: 2015-03-11 09:08:43
+
+two:
+  employee_id: MyString
+  name: MyString
+  shusha: 2015-03-11 09:08:43
+  taisha: 2015-03-11 09:08:43

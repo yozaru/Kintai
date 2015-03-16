@@ -1,0 +1,26 @@
+<header>
+  <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="nav-collapse">
+        <ul class="nav">
+        <div class="btn-group">
+      </div>
+          </ul>
+            <form class="navbar-form navbar-right" role="search" method="post" action="/search">
+            <div class="form-group">
+            <input name="stxt" type="text" class="form-control" placeholder="検索条件を入れてください">
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <button type="submit" class="btn btn-default">検索</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
