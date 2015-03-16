@@ -27,13 +27,13 @@
     </tr>
   </thead>
   <tbody class="scrollBody">
-    <% @kintais.each do |kintai| %>
+    <% @users.each do |user| %>
       <tr>
-        <td><%= kintai.employee_id %></td>
-        <td><%= kintai.name %></td>
-        <td><%= kintai.sex %></td>
-        <td><%= kintai.project %></td>
-        <td><%= kintai.job %></td>
+        <td><%= user.employee_id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.sex %></td>
+        <td><%= user.project %></td>
+        <td><%= user.job %></td>
 	<td><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
 	<td><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
 	<td><%= strTime = kintai.taisha.hour - kintai.shusha.hour %></td>
@@ -44,7 +44,6 @@
         <td><%= link_to 'Show', kintai %></td>
         <td><%= link_to 'Edit', edit_kintai_path(kintai) %></td>
         <td><%= link_to 'Destroy', kintai, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
       </tr>
     <% end %>
   </tbody>

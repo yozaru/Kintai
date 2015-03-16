@@ -1,6 +1,5 @@
 class KintaisController < ApplicationController
   before_action :set_kintai, only: [:show, :edit, :update, :destroy]
-
   # GET /kintais
   # GET /kintais.json
   def index
@@ -95,4 +94,5 @@ class KintaisController < ApplicationController
     def kintai_params
       params.require(:kintai).permit(:employee_id, :name, :shusha, :taisha, :project, :job, :sex, :idm )
     end
+
 end
