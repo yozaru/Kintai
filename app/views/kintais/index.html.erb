@@ -30,16 +30,17 @@
         <td><%= kintai.sex %></td>
         <td><%= kintai.project %></td>
         <td><%= kintai.job %></td>
-	<% if kintai.shusha.hour >= @hiru_time then %> 
-	<td BgColor="#87CEFA"><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
+	<% if kintai.timestores.present? %>
+	<% if kintai.timestores.first.entry.hour >= @hiru_time then %> 
+	<td BgColor="#87CEFA"><%= strTime = kintai.timestores.first.entry.strftime("%H時 %M分") %></td>
 	<% @hiru = @hiru + 1 %>
-	<% elsif kintai.shusha.hour >= @late_time then %>
+	<% elsif kintai.timestores.first.entry.hour >= @late_time then %>
 	<% @asa = @asa + 1 %>
-	<td Bgcolor="#ffd900"><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
-	<% elsif kintai.shusha.hour == 0 then %>
+	<td Bgcolor="#ffd900"><%= strTime = kintai.timestores.first.entry.strftime("%H時 %M分") %></td>
+	<% elsif kintai.timestores.first.entry.hour == 0 then %>
 	<td><%= p "未出社" %></td>
 	<% else %>
-	<td><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
+	<td><%= strTime = kintai.timestores.first.entry.hour.strftime("%H時 %M分") %></td>
 	<% end %>
 	
 	<% if kintai.taisha.hour >= @night_time %>
@@ -60,6 +61,8 @@
 	<% else %>
 	<td><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
 	<% end %>
+	<% end %>
+
 <!--        <td><%= link_to 'Show', kintai %></td>
         <td><%= link_to 'Edit', edit_kintai_path(kintai) %></td>
         <td><%= link_to 'Destroy', kintai, method: :delete, data: { confirm: 'Are you sure?' } %></td>
