@@ -16,7 +16,6 @@ gem 'therubyracer', platforms: :ruby
 
 #device
 gem 'devise'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -33,7 +32,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 gem 'turbolinks'
 gem 'rb-readline'
-
 #Bootstrap
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
