@@ -40,26 +40,26 @@
 	<% elsif kintai.timestores.first.entry.hour == 0 then %>
 	<td><%= p "未出社" %></td>
 	<% else %>
-	<td><%= strTime = kintai.timestores.first.entry.hour.strftime("%H時 %M分") %></td>
+	<td><%= strTime = kintai.timestores.first.entry.strftime("%H時 %M分") %></td>
 	<% end %>
 	
 	<% if kintai.taisha.hour >= @night_time %>
 	<% @zangyo = @zangyo + 1 %>
-	<td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+	<td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	<% elsif kintai.taisha.hour == 0 then%>
-	<td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+	<td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	<% elsif kintai.taisha.hour == 1 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	<% elsif kintai.taisha.hour == 2 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 3 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 4 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 5 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	<% else %>
-	<td><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+	<td><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
 	<% end %>
 	<% end %>
 
