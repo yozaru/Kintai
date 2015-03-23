@@ -11,7 +11,7 @@ day=`echo $TXT | cut -c10-11`
 hour=`echo $TXT | cut -c12-13`
 min=`echo $TXT | cut -c14-15`
 sec=`echo $TXT | cut -c16-17`
-
+mv $TXT old
 #printf "HOME=[%s]\n" $HOME
 check_at=`printf "%4s-%2s-%2s-%2s:%2s:%2s" "$year" "$month" "$day" "$hour" "$min" "$sec"`
 #check_at=`printf "0000 "`
