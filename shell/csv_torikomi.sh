@@ -11,7 +11,6 @@ day=`echo $TXT | cut -c10-11`
 hour=`echo $TXT | cut -c12-13`
 min=`echo $TXT | cut -c14-15`
 sec=`echo $TXT | cut -c16-17`
-mv $TXT old
 #printf "HOME=[%s]\n" $HOME
 check_at=`printf "%4s-%2s-%2s-%2s:%2s:%2s" "$year" "$month" "$day" "$hour" "$min" "$sec"`
 #check_at=`printf "0000 "`
@@ -20,6 +19,6 @@ echo $check_at
 idm=`cat $TXT | awk 'NR==4 {print $0}'`
 mysql -u root -pMalmen1203 Shukei_development -e "INSERT INTO timestores (check_at,idm) values ('"$check_at"','"$idm"')"
 #mysql -u root -pMalmen1203 Shukei_development -e "INSERT INTO timestores (check_at,idm) VALUES ('2015-03-20 09:31:25','aaaaaaa')"
-
+mv $TXT /home/csv/old/
 done
 
