@@ -1,6 +1,8 @@
 #!/bin/bash
 id=2
-TODAY=`date '+%F'`
+#TODAY=`date '+%F'`
+#TODAY=`date '+%F'`
+TODAY=`date -d '1 days ago' '+%F'`
 TODAY=`echo "$TODAY" | sed -e 's/^  *//g'`
 TODAY=`echo "$TODAY" | sed -e 's/  *$//g'`
 TODAY=`echo "$TODAY" | sed s/"\n"//g`
@@ -34,8 +36,10 @@ entry=$mae$entry$ushiro
 goal=$mae$goal$ushiro
 echo $entry
 echo $goal
-mysql -u root -pMalmen1203 Shukei_development -e "update kintais set shusha =$entry where idm = '"$card"'"
-mysql -u root -pMalmen1203 Shukei_development -e "update kintais set taisha =$goal where idm = '"$card"'"
+let sum=goal-entry
+echo $sum
+#mysql -u root -pMalmen1203 Shukei_development -e "update kintais set shusha =$entry where idm = '"$card"'"
+#mysql -u root -pMalmen1203 Shukei_development -e "update kintais set taisha =$goal where idm = '"$card"'"
 id=$((id + 1))
 echo $id
 done

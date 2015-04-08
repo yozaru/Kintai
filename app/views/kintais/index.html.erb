@@ -2,9 +2,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Applibot 勤怠管理表</h1>
-3/17の勤怠
+<%= day=Time.now %>
 <br>
 ※新たに勤務時間、月間予測、遅刻、欠勤を追加予定です。
+<br>
+※月労働時間は4月5日時点の暫定分です。
 <br>
 <br>
 <div class="container">
@@ -19,9 +21,12 @@
       <th><%= link_to "職種", sort: "project" %></th>
       <th><%= link_to "出社", sort: "shusha" %></th>
       <th><%= link_to "退社", sort: "taisha" %></th>
-      <th colspan="3"></th>
+      <th><%= link_to "前日退社時間", sort: "ytaisha" %></th>
+      <th><%= link_to "月労働時間", sort: "sum" %></th>
+      <th><%= link_to "労働時間着地", sort: "taisha" %></th>
     </tr>
   </thead>
+
   <tbody class="scrollBody">
     <% @kintais.each do |kintai| %>
       <tr>
@@ -30,38 +35,71 @@
         <td><%= kintai.sex %></td>
         <td><%= kintai.project %></td>
         <td><%= kintai.job %></td>
-	<% if kintai.timestores.present? %>
-	<% if kintai.timestores.first.entry.hour >= @hiru_time then %> 
-	<td BgColor="#87CEFA"><%= strTime = kintai.timestores.first.entry.strftime("%H時 %M分") %></td>
+	<% if kintai.present? %>
+	<% if kintai.shusha.hour >= @hiru_time then %> 
+	<td BgColor="#87CEFA"><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
 	<% @hiru = @hiru + 1 %>
-	<% elsif kintai.timestores.first.entry.hour >= @late_time then %>
+	<% elsif kintai.shusha.hour >= @late_time then %>
 	<% @asa = @asa + 1 %>
-	<td Bgcolor="#ffd900"><%= strTime = kintai.timestores.first.entry.strftime("%H時 %M分") %></td>
-	<% elsif kintai.timestores.first.entry.hour == 0 then %>
+	<td Bgcolor="#ffd900"><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
+	<% elsif kintai.shusha.hour == 0 then %>
 	<td><%= p "未出社" %></td>
 	<% else %>
-	<td><%= strTime = kintai.timestores.first.entry.strftime("%H時 %M分") %></td>
+	<td><%= strTime = kintai.shusha.strftime("%H時 %M分") %></td>
 	<% end %>
-	
-	<% if kintai.taisha.hour >= @night_time %>
+
+	<% if kintai.taisha == nil %>
+	<td><%= p "未退社" %></td>
+	<% elsif kintai.taisha.strftime("%H時 %M分") == "00時 00分" then %>
+        <td><%= p "未退社" %></td>	
+	<% elsif kintai.taisha.hour >= @night_time %>
 	<% @zangyo = @zangyo + 1 %>
-	<td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+	<td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
+	<% elsif kintai.taisha.strftime("%H時 %M分") == "00時 00分" then %>
+	<td><%= p "未退社" %></td>
 	<% elsif kintai.taisha.hour == 0 then%>
-	<td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+	<td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("24時 %M分") %></td>
 	<% elsif kintai.taisha.hour == 1 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%25時 %M分") %></td>
 	<% elsif kintai.taisha.hour == 2 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%26時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 3 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%27時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 4 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%28時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 5 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%29時 %M分") %></td>
 	<% else %>
-	<td><%= strTime = kintai.timestores.first.left.strftime("%H時 %M分") %></td>
+	<td><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
 	<% end %>
+
+	<% if kintai.ytaisha == nil %>
+        <td><%= p "未退社" %></td>
+	<% elsif kintai.ytaisha.hour >= @night_time %>
+        <% @zangyo = @zangyo + 1 %>
+        <td BgColor="#ff0000"><%= strTime = kintai.ytaisha.strftime("%H時 %M分") %></td>
+        <% elsif kintai.ytaisha.strftime("%H時 %M分") == "00時 00分" then %>
+        <td><%= p "未退社" %></td>
+	<% elsif kintai.ytaisha.hour == 0 then%>
+        <td BgColor="#ff0000"><%= strTime = kintai.ytaisha.strftime("24時 %M分") %></td>
+        <% elsif kintai.ytaisha.hour == 1 then%>
+        <td BgColor="#ff0000"><%= strTime = kintai.ytaisha.strftime("25時 %M分") %></td>
+        <% elsif kintai.ytaisha.hour == 2 then%>
+        <td BgColor="#ff0000"><%= strTime = kintai.ytaisha.strftime("26時 %M分") %></td>
+         <% elsif kintai.ytaisha.hour == 3 then%>
+        <td BgColor="#ff0000"><%= strTime = kintai.ytaisha.strftime("27時 %M分") %></td>
+         <% elsif kintai.ytaisha.hour == 4 then%>
+        <td BgColor="#ff0000"><%= strTime = kintai.ytaisha.strftime("28時 %M分") %></td>
+         <% elsif kintai.ytaisha.hour == 5 then%>
+        <td BgColor="#ff0000"><%= strTime = kintai.ytaisha.strftime("29時 %M分") %></td>
+	<% else %>
+        <td><%= strTime = kintai.ytaisha.strftime("%H時 %M分") %></td>
+        <% end %>
+
+	<td><%= strTime = kintai.sum %></td>
+	 
 	<% end %>
+
 
 <!--        <td><%= link_to 'Show', kintai %></td>
         <td><%= link_to 'Edit', edit_kintai_path(kintai) %></td>

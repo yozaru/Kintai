@@ -5,7 +5,7 @@ class KintaisController < ApplicationController
   def index
 #    @kintais = Kintai.all
     @kintais = Kintai.order(params[:sort])
-    @users = User.order(params[:sort])
+#    @users = User.order(params[:sort]).order(params[:sort])
     Timestore.import
     @zero_time = 0
     @late_time = 10
@@ -14,12 +14,50 @@ class KintaisController < ApplicationController
     @asa = 0
     @hiru = 0
     @zangyo = 0
+    # 設定
+    @sort = params[:sort].nil? ? 'employee_id' : params[:sort]
+    if @sort  == session[:sort]
+      @direction = session[:direction] == 'asc' ? 'desc' : 'asc'
+    else
+      @direction = 'asc'
+    end
+    # データ呼び出し
+    @kintais = Kintai.order(@sort + ' ' + @direction)
+    # セッション保存
+    session[:sort] = @sort
+    session[:direction] = @direction
+ 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @kintais }
+    end 
   end
-
-  def hayai
   
+  def kanri
+    @kintais = Kintai.order(params[:sort]).order(params[:sort])
+    @zero_time = 0
+    @late_time = 10
+    @hiru_time = 13
+    @night_time = 23
+    @asa = 0
+    @hiru = 0
+    @zangyo = 0
+        @sort = params[:sort].nil? ? 'employee_id' : params[:sort]
+    if @sort  == session[:sort]
+      @direction = session[:direction] == 'asc' ? 'desc' : 'asc'
+    else
+      @direction = 'asc'
+    end
+         @kintais = Kintai.order(@sort + ' ' + @direction)
+                 session[:sort] = @sort
+                     session[:direction] = @direction
+    
+                         respond_to do |format|
+                               format.html # index.html.erb
+                         format.json { render json: @kintais }
+     end  
   end
-
+  
   # GET /kintais/1
   # GET /kintais/1.json
   def show
@@ -94,7 +132,7 @@ class KintaisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def kintai_params
-      params.require(:kintai).permit(:employee_id, :name, :shusha, :taisha, :project, :job, :sex, :idm )
+      params.require(:kintai).permit(:employee_id , :name, :shusha, :taisha, :project, :job, :sex, :idm, :ytaisha, :sum )
     end
 
 end
