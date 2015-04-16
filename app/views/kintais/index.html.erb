@@ -6,7 +6,6 @@
 <br>
 ※新たに勤務時間、月間予測、遅刻、欠勤を追加予定です。
 <br>
-※月労働時間は4月5日時点の暫定分です。
 <br>
 <br>
 <div class="container">
@@ -23,7 +22,7 @@
       <th><%= link_to "退社", sort: "taisha" %></th>
       <th><%= link_to "前日退社時間", sort: "ytaisha" %></th>
       <th><%= link_to "月労働時間", sort: "sum" %></th>
-      <th><%= link_to "労働時間着地", sort: "taisha" %></th>
+      <th><%= link_to "労働時間着地予想", sort: "sum" %></th>
     </tr>
   </thead>
 
@@ -96,15 +95,11 @@
         <td><%= strTime = kintai.ytaisha.strftime("%H時 %M分") %></td>
         <% end %>
 
-	<td><%= strTime = kintai.sum %></td>
+	<td><%= strTime = kintai.sum %>時間</td>
+	<td><%= kintai.sum.to_i*2 %>時間</td>
 	 
 	<% end %>
 
-
-<!--        <td><%= link_to 'Show', kintai %></td>
-        <td><%= link_to 'Edit', edit_kintai_path(kintai) %></td>
-        <td><%= link_to 'Destroy', kintai, method: :delete, data: { confirm: 'Are you sure?' } %></td>
--->
       </tr>
     <% end %>
   </tbody>
@@ -112,16 +107,11 @@
 </div>
 </div>
 <br>
-<!-- <div style="position:absolute; top:120px; left:200px;">
-<h1>今日の遅刻は<%= p @asa %>人です
-<br>
-<br>
-今日の昼出社は<%= p @hiru %>人です
-<br>
-<br>
-今日の深夜残業は<%= p @zangyo %>人です
-</h1>
-</div>
--->
-<%= link_to 'New Kintai', new_kintai_path %>
 </center>
+
+<p class="fixed-0">
+<button type="button" class="btn btn-success" ><%= link_to 'New Member', new_kintai_path %></button>
+</p>
+<p class="fixed-2">
+<button type="button" class="btn btn-warning" ><%= link_to 'CSV形式でダウンロード', kintais_path(format: 'csv')  %></button>
+</p>

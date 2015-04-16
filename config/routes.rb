@@ -4,6 +4,13 @@ Rails.application.routes.draw do
   match 'search' => 'kintais#search', :via => :post
   get 'kanri' => 'kintais#kanri'  
 
+  resources :kintais do
+  collection do
+    get 'import_csv_new'
+    post 'import_csv'
+  end
+  end
+
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

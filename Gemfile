@@ -7,6 +7,7 @@ gem 'rails', '4.2.0'
 gem 'mysql2'
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 4.0.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -24,29 +25,30 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'slim'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
+gem 'sprockets-rails'
 gem 'unicorn'
 gem 'turbolinks'
 gem 'rb-readline'
+gem 'chatwork'
 #Bootstrap
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass', '2.3.2.0'
-gem 'sass-rails'
+#gem 'sass-rails'
 gem 'simple_form'
 gem "carrierwave"
 #Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
+#gem 'better_errors'
+#gem 'binding_of_caller'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

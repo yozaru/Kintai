@@ -15,7 +15,7 @@ card=`echo $card`
 mae="'"
 ushiro="'"
 #idm値が一致する値の中で5時以降で一番早い数字を入れ、フラグをたてる
-goal=`mysql -uroot -pMalmen1203 Shukei_development -e "select check_at from timestores where idm = '$card' and check_at between '2015-04-07 05:00:00' and '2015-04-08 04:59:00' order by check_at DESC limit 1"`
+goal=`mysql -uroot -pMalmen1203 Shukei_development -e "select check_at from timestores where idm = '$card' and check_at between '2015-04-13 05:00:00' and '2015-04-14 04:59:00' order by check_at DESC limit 1"`
 goal=`echo "$goal" | sed s/check_at//g`
 goal=`echo "$goal" | sed s/"\n"//g`
 goal=`echo $goal`

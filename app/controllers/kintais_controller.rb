@@ -26,13 +26,13 @@ class KintaisController < ApplicationController
     # セッション保存
     session[:sort] = @sort
     session[:direction] = @direction
- 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @kintais }
-    end 
+    
+  respond_to do |format|
+      format.html
+      format.csv { send_data @kintais.to_csv, type: 'text/csv; charset=shift_jis', filename: "kintais.csv" } 
   end
-  
+ end 
+
   def kanri
     @kintais = Kintai.order(params[:sort]).order(params[:sort])
     @zero_time = 0
@@ -80,6 +80,8 @@ class KintaisController < ApplicationController
       if @kintai.save
         format.html { redirect_to @kintai, notice: 'Kintai was successfully created.' }
         format.json { render :show, status: :created, location: @kintai }
+#        ChatWork.api_key = "5edaa76bb836f6aadcb22c15af56dbb6"
+#        ChatWork::Message.create(room_id: 2962079, body: "新しいメンバーが追加されました") 
       else
         format.html { render :new }
         format.json { render json: @kintai.errors, status: :unprocessable_entity }
@@ -112,6 +114,23 @@ class KintaisController < ApplicationController
       @zangyo = 0
       render :index
    end
+
+  def import_csv_new  
+  end
+  
+  def import_csv
+  respond_to do |format|
+    if Kintai.import_csv(params[:csv_file])
+      format.html { redirect_to kintais_path }
+      format.json { head :no_content }
+    else
+      format.html { redirect_to kintais_path, :notice => "CSVファイルの読み込みに失敗しました。" }
+      format.json { head :no_content }
+    end
+  end
+  end 
+
+
 
 
   # DELETE /kintais/1
