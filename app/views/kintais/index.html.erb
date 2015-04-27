@@ -59,15 +59,15 @@
 	<% elsif kintai.taisha.hour == 0 then%>
 	<td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("24時 %M分") %></td>
 	<% elsif kintai.taisha.hour == 1 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%25時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("25時 %M分") %></td>
 	<% elsif kintai.taisha.hour == 2 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%26時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("26時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 3 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%27時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("27時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 4 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%28時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("28時 %M分") %></td>
 	 <% elsif kintai.taisha.hour == 5 then%>
-        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("%29時 %M分") %></td>
+        <td BgColor="#ff0000"><%= strTime = kintai.taisha.strftime("29時 %M分") %></td>
 	<% else %>
 	<td><%= strTime = kintai.taisha.strftime("%H時 %M分") %></td>
 	<% end %>
@@ -96,8 +96,7 @@
         <% end %>
 
 	<td><%= strTime = kintai.sum %>時間</td>
-	<td><%= kintai.sum.to_i*2 %>時間</td>
-	 
+	<td><%= strTime = kintai.monthly %>時間</td>
 	<% end %>
 
       </tr>
