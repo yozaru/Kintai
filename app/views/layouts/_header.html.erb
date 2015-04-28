@@ -8,12 +8,22 @@
           <span class="icon-bar"></span>
         </a>
         <a class="brand" href="http://kintais-employee.applibot.co.jp/kintais">Applibot attendance management</a>
+
 	<div class="nav-collapse">
         <ul class="nav">
         <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">過去分<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="">4月</a></li>
+          <li><a href="">5月</a></li>
+          <li><a href="">6月</a></li>
+          <li><a href="">7月</a></li>
+        </ul>
       </div>
-          </ul>
-            <form class="navbar-form navbar-right" role="search" method="post" action="/search">
+
+
+	<form class="navbar-form navbar-right pull-right" role="search" method="post" action="/search">
             <div class="form-group">
             <input name="stxt" type="text" class="form-control" placeholder="検索条件を入れてください">
             <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
