@@ -80,7 +80,7 @@ class KintaisController < ApplicationController
       if @kintai.save
         format.html { redirect_to @kintai, notice: 'Kintai was successfully created.' }
         format.json { render :show, status: :created, location: @kintai }
-        ChatWork.api_key = "5edaa76bb836f6aadcb22c15af56dbb6"
+        ChatWork.api_key = "66496d47070398f1824d380bbebbcdfe"
         ChatWork::Message.create(room_id: 31545163, body: "新しい従業員が追加されました") 
       else
         format.html { render :new }

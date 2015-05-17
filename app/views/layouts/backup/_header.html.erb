@@ -1,0 +1,37 @@
+<header>
+  <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="http://kintais-employee.applibot.co.jp/kintais">Applibot attendance management</a>
+
+	<div class="nav-collapse">
+        <ul class="nav">
+        <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">過去分<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="">4月</a></li>
+          <li><a href="">5月</a></li>
+          <li><a href="">6月</a></li>
+          <li><a href="">7月</a></li>
+        </ul>
+      </div>
+
+
+	<form class="navbar-form navbar-right pull-right" role="search" method="post" action="/search">
+            <div class="form-group">
+            <input name="stxt" type="text" class="form-control" placeholder="検索条件を入れてください">
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <button type="submit" class="btn btn-default">検索</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

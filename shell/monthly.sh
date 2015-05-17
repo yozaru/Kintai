@@ -37,7 +37,9 @@ goal=`echo "$goal" | sed s/"\n"//g`
 goal=`echo $goal`
 goal=$mae$goal$ushiro
 echo $goal
-mysql -u root -pMalmen1203 Shukei_development -e "update kintais set monthly =sum*1.1 where idm = '"$card"'"
+mysql -u root -pMalmen1203 Shukei_development -e "update kintais set monthly =sum*2 where idm = '"$card"'"
 id=$((id + 1))
 echo $id
 done
+
+curl -X POST -H "X-ChatWorkToken: 66496d47070398f1824d380bbebbcdfe" -d "body=[To:580445][To:666483][To:1204969]月末着予が更新されました。" "https://api.chatwork.com/v1/rooms/31545163/messages"

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root :to => 'kintais#index'
   match 'search' => 'kintais#search', :via => :post
   get 'kanri' => 'kintais#kanri'  
+  get '4m' => 'kintais#4m'  
 
   resources :kintais do
   collection do
