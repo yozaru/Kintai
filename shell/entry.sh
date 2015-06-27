@@ -7,7 +7,7 @@ TODAY=`echo "$TODAY" | sed s/"\n"//g`
 TODAY=`echo "$TODAY" | sed s/"'"//g`
 TODAY=`echo $TODAY`
 echo $TODAY
-until [ $id -eq 616 ]
+until [ $id -eq 300 ]
 
 do
 #timestoresテーブルのidm値を変数に代入

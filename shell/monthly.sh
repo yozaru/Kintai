@@ -37,7 +37,7 @@ goal=`echo "$goal" | sed s/"\n"//g`
 goal=`echo $goal`
 goal=$mae$goal$ushiro
 echo $goal
-mysql -u root -pMalmen1203 Shukei_development -e "update kintais set monthly =sum*2 where idm = '"$card"'"
+mysql -u root -pMalmen1203 Shukei_development -e "update kintais set monthly =sum*1.5 where idm = '"$card"'"
 id=$((id + 1))
 echo $id
 done

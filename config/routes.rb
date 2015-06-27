@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   root :to => 'kintais#index'
   match 'search' => 'kintais#search', :via => :post
   get 'kanri' => 'kintais#kanri'  
-  get '4m' => 'kintais#4m'  
+  match '/chikoku', to: 'kintais#chikoku', via: :get
+  match '/shinya', to: 'kintais#shinya', via: :get
+  match '/test', to: 'kintais#test', via: :get
+  get "kintais/kako/:month" => "kintais#kako", :as => :kako
 
   resources :kintais do
   collection do
     get 'import_csv_new'
+#    match 'kako/:month', :action => :kako, :as => :kako
     post 'import_csv'
   end
   end

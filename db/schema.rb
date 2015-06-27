@@ -11,25 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401191005) do
+ActiveRecord::Schema.define(version: 20150519025527) do
 
-  create_table "kintais", force: :cascade do |t|
+  create_table "archive", force: :cascade do |t|
+    t.string  "employee_id", limit: 45
+    t.string  "name",        limit: 45
+    t.string  "sex",         limit: 45
+    t.string  "project",     limit: 45
+    t.integer "month",       limit: 4
+    t.string  "worktime",    limit: 45
+  end
+
+  create_table "kakos", force: :cascade do |t|
     t.string   "employee_id", limit: 255
     t.string   "name",        limit: 255
-    t.time     "shusha"
-    t.time     "taisha"
+    t.string   "sex",         limit: 255
+    t.string   "project",     limit: 255
+    t.string   "job",         limit: 255
+    t.integer  "month",       limit: 4
+    t.integer  "worktime",    limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.string   "job",         limit: 255
-    t.string   "project",     limit: 255
-    t.string   "idm",         limit: 255
-    t.string   "sex",         limit: 255
-    t.time     "ytaisha"
   end
 
-  create_table "test", primary_key: "idtest", force: :cascade do |t|
-    t.string "testcol", limit: 45
+  create_table "kintais", force: :cascade do |t|
+    t.string  "employee_id", limit: 255
+    t.string  "name",        limit: 255
+    t.time    "shusha"
+    t.time    "taisha"
+    t.string  "job",         limit: 255
+    t.string  "project",     limit: 255
+    t.string  "idm",         limit: 255
+    t.string  "sex",         limit: 255
+    t.time    "ytaisha"
+    t.integer "sum",         limit: 4
+    t.integer "monthly",     limit: 4
   end
+
+  create_table "sum_kintai", force: :cascade do |t|
+    t.string "idm",          limit: 45
+    t.string "sum_kintai",   limit: 45
+    t.string "sabun_kintai", limit: 45
+    t.string "employee_id",  limit: 45
+    t.string "name",         limit: 45
+  end
+
+  create_table "test", primary_key: "employee_id", force: :cascade do |t|
+    t.string  "sum", limit: 255
+    t.integer "id",  limit: 4
+  end
+
+  add_index "test", ["employee_id"], name: "employee_id_UNIQUE", unique: true, using: :btree
 
   create_table "timestores", force: :cascade do |t|
     t.datetime "check_at"
@@ -40,14 +72,6 @@ ActiveRecord::Schema.define(version: 20150401191005) do
     t.datetime "updated_at"
     t.time     "left"
     t.time     "entry"
-  end
-
-  create_table "today_entries", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.time     "entry"
-    t.time     "last_out"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
   end
 
   create_table "users", force: :cascade do |t|

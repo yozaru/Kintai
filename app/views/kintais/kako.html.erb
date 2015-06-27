@@ -1,0 +1,38 @@
+<center>
+<p id="notice"><%= notice %></p>
+<% d = Date.today %>
+<h1>Applibot 4月度勤怠管理表</h1>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<div class="tablecenter">
+<table border="1">
+  <thead>
+    <tr>
+      <th><%= link_to "社員番号", sort: "employee_id" %></th>
+      <th><%= link_to "氏名", sort: "name" %></th>
+      <th><%= link_to "性別", sort: "sex" %></th>
+      <th><%= link_to "プロジェクト", sort: "project" %></th>
+      <th><%= link_to "月労働時間", sort: "worktime" %></th>
+    </tr>
+  </thead>
+
+  <tbody class="scrollBody">
+    <% @archives.each do |archive| %>
+      <tr>
+        <td><%= archive.employee_id %></td>
+        <td><%= archive.name %></td>
+        <td><%= archive.sex %></td>
+        <td><%= archive.project %></td>
+	<td><%= strTime = archive.worktime %>時間</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+</center>
+
